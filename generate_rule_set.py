@@ -4,7 +4,8 @@ import os
 from aggregate6 import aggregate
 
 dnsmasq_china_list = [
-    "https://raw.githubusercontent.com/hilist/sblist/trunk/whiteList.txt"
+    "https://raw.githubusercontent.com/hilist/sblist/hidden/local.txt",
+    "https://raw.githubusercontent.com/hilist/sblist/hidden/remote.txt"
 ]
 
 output_dir = "./rule-set"
