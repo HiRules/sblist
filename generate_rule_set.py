@@ -3,21 +3,26 @@ import json
 import os
 from aggregate6 import aggregate
 
-dnsmasq_china_list = [
+simple_site_list = [
     "https://raw.githubusercontent.com/hilist/sblist/hidden/site-green.txt",
     "https://raw.githubusercontent.com/hilist/sblist/hidden/site-red.txt"
+]
+
+simple_ip_list = [
+    "https://raw.githubusercontent.com/hilist/sblist/hidden/ip-red.txt"
 ]
 
 output_dir = "./rule-set"
 
 
-def convert_dnsmasq(url: str) -> str:
+def convert_site(url: str) -> str:
     r = requests.get(url)
     domain_suffix_list = []
     if r.status_code == 200:
         lines = r.text.splitlines()
         for line in lines:
-            domain_suffix_list.append(line)
+            if not line.startswith("#"):
+                domain_suffix_list.append(line)
     result = {
         "version": 1,
         "rules": [
@@ -32,14 +37,40 @@ def convert_dnsmasq(url: str) -> str:
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
     return filepath
+    
 
-
+def convert_ip(url: str) -> str:
+    r = requests.get(url)
+    ip_cidr_list = []
+    if r.status_code == 200:
+        lines = r.text.splitlines()
+        for line in lines:
+            if not line.startswith("#"):
+                ip_cidr_list.append(line)
+    result = {
+        "version": 1,
+        "rules": [
+            {
+                "ip_cidr": []
+            }
+        ]
+    }
+    filename = url.split("/")[-1]
+    result["rules"][0]["ip_cidr"] = ip_cidr_list
+    filepath = os.path.join(output_dir, filename.split(".")[-2] + ".json")
+    with open(filepath, "w") as f:
+        f.write(json.dumps(result, indent=4))
+    return filepath
+    
 
 def main():
     files = []
     os.mkdir(output_dir)
-    for url in dnsmasq_china_list:
-        filepath = convert_dnsmasq(url)
+    for url in simple_site_list:
+        filepath = convert_site(url)
+        files.append(filepath)
+    for url in simple_ip_list:
+        filepath = convert_ip(url)
         files.append(filepath)
     print("rule-set source generated:")
     for filepath in files:
