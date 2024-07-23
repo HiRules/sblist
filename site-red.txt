@@ -10,3 +10,4 @@ nodeseek.com
 idatariver.com
 batterymall.com
 iconify.design
+idev.dev
