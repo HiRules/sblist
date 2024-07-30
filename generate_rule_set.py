@@ -4,8 +4,8 @@ import os
 from aggregate6 import aggregate
 
 simple_site_list = [
-    "https://raw.githubusercontent.com/HiRules/sblist/hidden/whitelist.txt",
-    "https://raw.githubusercontent.com/HiRules/sblist/hidden/blacklist.txt"
+    "https://raw.githubusercontent.com/HiRules/sblist/hidden/custom-site-direct.txt",
+    "https://raw.githubusercontent.com/HiRules/sblist/hidden/custom-site-proxy.txt"
 ]
 
 output_dir = "./rule-set"
@@ -48,6 +48,7 @@ def main():
         srs_path = filepath.replace(".json", ".srs")
         os.system("sing-box rule-set compile --output " +
                   srs_path + " " + filepath)
+        os.remove(filepath) 
 
 
 if __name__ == "__main__":
