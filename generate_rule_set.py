@@ -4,6 +4,7 @@ import os
 from aggregate6 import aggregate
 
 simple_site_list = [
+    "https://raw.githubusercontent.com/ruijzhan/chnroute/master/gfwlist.txt",
     "https://raw.githubusercontent.com/HiRules/sblist/hidden/custom-site-direct.txt",
     "https://raw.githubusercontent.com/HiRules/sblist/hidden/custom-site-proxy.txt"
 ]
