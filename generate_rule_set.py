@@ -4,8 +4,8 @@ import os
 from aggregate6 import aggregate
 
 simple_site_list = [
-    "https://raw.githubusercontent.com/hilist/sblist/hidden/whitelist.txt",
-    "https://raw.githubusercontent.com/hilist/sblist/hidden/blacklist.txt"
+    "https://raw.githubusercontent.com/HiRules/sblist/hidden/whitelist.txt",
+    "https://raw.githubusercontent.com/HiRules/sblist/hidden/blacklist.txt"
 ]
 
 output_dir = "./rule-set"
