@@ -56,8 +56,9 @@ def convert_telegram(url: str) -> str:
             }
         ]
     }
+    filename = url.split("/")[-1]
     result["rules"][0]["ip_cidr"] = ip_cidr_list
-    filepath = os.path.join(output_dir, url.split("/")[-1] + ".json")
+    filepath = os.path.join(output_dir, filename.split(".")[-2] + ".json")
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
     return filepath
