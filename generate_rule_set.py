@@ -48,7 +48,6 @@ def main():
         srs_path = filepath.replace(".json", ".srs")
         os.system("sing-box rule-set compile --output " +
                   srs_path + " " + filepath)
-        os.remove(filepath) 
 
 
 if __name__ == "__main__":
