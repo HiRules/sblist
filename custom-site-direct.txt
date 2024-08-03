@@ -4,7 +4,6 @@ mynetname.net
 windows.net
 windows.com
 microsoft.com
-live.com
 microsoftonline.com
 eu.org
 1drv.com
