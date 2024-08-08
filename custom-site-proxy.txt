@@ -13,3 +13,4 @@ iconify.design
 idev.dev
 broadcom.com
 mojie.me
+gnu.style
