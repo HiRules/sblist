@@ -17,3 +17,4 @@ gnu.style
 sing-box.app
 icloudnative.io
 linux.do
+sagernet.org
