@@ -73,8 +73,8 @@ def convert_chnroutes2(url: str) -> str:
 def convert_iwik(url: str) -> str:
     filename = os.path.basename(url)
     suffix = os.path.splitext(filename)[1]
-    print(suffix)
-    ip_version == ""
+    print("1"+ suffix)
+    ip_version = ""
     if suffix == ".cidr":
         ip_version == "ipv4"
     else:
