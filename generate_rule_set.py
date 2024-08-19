@@ -394,15 +394,6 @@ def main():
     merge_ipv6_lists = [files[5], files[7], files[9]]
     ipv6_filepath = merge_lists(fn3, ipv6_key, *merge_ipv6_lists)
 
-    filepath = convert_site(site_filepath)
-    files.append(filepath)
-    
-    filepath = convert_ip(ipv4_filepath)
-    files.append(filepath)
-    
-    filepath = convert_ip(ipv6_filepath)
-    files.append(filepath)
-
 
     print("rule-set source generated:")
     for filepath in files:
