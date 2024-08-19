@@ -272,7 +272,7 @@ def convert_adguard_unblock(url: str) -> str:
     return filepath
 
 
-def merge_lists(merge, kv, *lists):
+def merge_lists(output_dir, merge, kv, *lists):
     result = set()
     for i in range(len(lists)):
         with open(lists[i],"r",encoding="utf-8") as R:
@@ -280,10 +280,11 @@ def merge_lists(merge, kv, *lists):
                 result.add(line.strip())
     result = list(result)
     result.sort(key = kv)
-    with open(merge,"w",encoding="utf-8") as W:
+    filepath = os.path.join(output_dir, merge + ".txt")
+    with open(filepath,"w",encoding="utf-8") as W:
         for line in result:
             W.write(line + "\n")
-    return merge
+    return filepath
 
 
 def convert_site(url: str) -> str:
@@ -376,18 +377,18 @@ def main():
     print(files)
     merge_site_lists = [files[0], files[1], files[2]]
     site_key = lambda x: (x.split('.')[0])
-    merge_site = output_dir + "/cnsite.txt"
-    merge_lists(merge_site, site_key, *merge_site_lists)
+    merge_site = "cnsite"
+    merge_lists(output_dir, merge_site, site_key, *merge_site_lists)
 
     merge_ipv4_lists = [files[3], files[4], files[6], files[8]]
     ipv4_key = lambda x: (x.split('.')[0], x.split('.')[1])
-    merge_ipv4 = output_dir + "/cnipv4.txt"
-    merge_lists(merge_ipv4, ipv4_key, *merge_ipv4_lists)
+    merge_ipv4 = "cnipv4"
+    merge_lists(output_dir, merge_ipv4, ipv4_key, *merge_ipv4_lists)
 
     merge_ipv6_lists = [files[5], files[7], files[9]]
     ipv6_key = lambda x: (x.split(':')[0], x.split(':')[1])
-    merge_ipv6 = output_dir + "/cnipv6.txt"
-    merge_lists(merge_ipv6, ipv6_key, *merge_ipv6_lists)
+    merge_ipv6 = "cnipv6"
+    merge_lists(output_dir, merge_ipv6, ipv6_key, *merge_ipv6_lists)
 
     filepath = convert_site(merge_site)
     files.append(filepath)
