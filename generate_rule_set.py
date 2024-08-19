@@ -379,6 +379,11 @@ def main():
     # files[10] = os.path.join(output_dir, filter.conf)
     # files[11] = os.path.join(output_dir, filter.unblock.conf)
 
+    fna = os.path.join(output_dir, "test.txt")
+    fnb = os.path.join("https://raw.githubusercontent.com/HiRules/sblist/rule-set/", "test.txt")
+    print(fna)
+    print(fnb)
+    print(requests.get(fnb).status_code)
     merge_site_lists = [files[0], files[1], files[2]]
     site_filepath = merge_lists(fn1, site_key, *merge_site_lists)
     print(site_filepath)
