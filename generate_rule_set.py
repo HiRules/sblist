@@ -372,7 +372,7 @@ def main():
     # files[10] = os.path.join(output_dir, filter.conf)
     # files[11] = os.path.join(output_dir, filter.unblock.conf)
 
-
+    print(files)
     merge_site_lists = [files[0], files[1], files[2]]
     site_key = lambda x: (x.split('.')[0])
     merge_site = output_dir + "/cnsite.txt"
