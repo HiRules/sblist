@@ -74,8 +74,8 @@ def convert_iwik(url: str) -> str:
     filename = os.path.basename(url)
     suffix = os.path.splitext(filename)[1]
     print(suffix)
-    ip_version = ''
-    if suffix == "cidr":
+    ip_version == ""
+    if suffix == ".cidr":
         ip_version == "ipv4"
     else:
         ip_version == "ipv6"
