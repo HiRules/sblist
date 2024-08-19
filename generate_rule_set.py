@@ -373,26 +373,25 @@ def main():
     # files[10] = os.path.join(output_dir, filter.conf)
     # files[11] = os.path.join(output_dir, filter.unblock.conf)
 
-    print(files)
     merge_site_lists = [files[0], files[1], files[2]]
     site_key = lambda x: (x.split('.')[0])
-    merge_lists("cnsite", site_key, *merge_site_lists)
+    site_filepath = merge_lists("cnsite", site_key, *merge_site_lists)
 
     merge_ipv4_lists = [files[3], files[4], files[6], files[8]]
     ipv4_key = lambda x: (x.split('.')[0], x.split('.')[1])
-    merge_lists("cnipv4", ipv4_key, *merge_ipv4_lists)
+    ipv4_filepath = merge_lists("cnipv4", ipv4_key, *merge_ipv4_lists)
 
     merge_ipv6_lists = [files[5], files[7], files[9]]
     ipv6_key = lambda x: (x.split(':')[0], x.split(':')[1])
-    merge_lists("cnipv6", ipv6_key, *merge_ipv6_lists)
+    ipv6_filepath = merge_lists("cnipv6", ipv6_key, *merge_ipv6_lists)
 
-    filepath = convert_site(merge_site)
+    filepath = convert_site(site_filepath)
     files.append(filepath)
     
-    filepath = convert_ip(merge_ipv4)
+    filepath = convert_ip(ipv4_filepath)
     files.append(filepath)
     
-    filepath = convert_ip(merge_ipv6)
+    filepath = convert_ip(ipv6_filepath)
     files.append(filepath)
 
 
