@@ -379,7 +379,7 @@ def main():
     merge_lists(merge_site, site_key, *merge_site_lists)
 
     merge_ipv4_lists = [files[3], files[4], files[6], files[8]]
-    ipv4_key = lambda x: (int(x.split('.')[0]), int(x.split('.')[1]), int(x.split('.')[2]))
+    ipv4_key = lambda x: (x.split('.')[0], x.split('.')[1], x.split('.')[2])
     merge_ipv4 = output_dir + "/cnipv4.txt"
     merge_lists(merge_ipv4, ipv4_key, *merge_ipv4_lists)
 
