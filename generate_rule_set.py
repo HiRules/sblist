@@ -34,6 +34,12 @@ adguard = [
 ]
 
 output_dir = "./rule-set"
+filepath1 = os.path.join(output_dir, "cnsite.txt")
+filepath2 = os.path.join(output_dir, "cnipv4.txt")
+filepath3 = os.path.join(output_dir, "cnipv6.txt")
+site_key = lambda x: (x.split('.')[0])
+ipv4_key = lambda x: (x.split('.')[0], x.split('.')[1], x.split('.')[2])
+ipv6_key = lambda x: (x.split(':')[0], x.split(':')[1])
 
 
 def convert_dnsmasq(url: str) -> str:
@@ -373,18 +379,12 @@ def main():
     # files[11] = os.path.join(output_dir, filter.unblock.conf)
 
     merge_site_lists = [files[0], files[1], files[2]]
-    site_key = lambda x: (x.split('.')[0])
-    filepath1 = os.path.join(output_dir, "cnsite.txt")
     site_filepath = merge_lists(filepath1, site_key, *merge_site_lists)
 
     merge_ipv4_lists = [files[3], files[4], files[6], files[8]]
-    ipv4_key = lambda x: (x.split('.')[0], x.split('.')[1])
-    filepath2 = os.path.join(output_dir, "cnipv4.txt")
     ipv4_filepath = merge_lists(filepath2, ipv4_key, *merge_ipv4_lists)
 
     merge_ipv6_lists = [files[5], files[7], files[9]]
-    ipv6_key = lambda x: (x.split(':')[0], x.split(':')[1])
-    filepath3 = os.path.join(output_dir, "cnipv6.txt")
     ipv6_filepath = merge_lists(filepath3, ipv6_key, *merge_ipv6_lists)
 
     filepath = convert_site(site_filepath)
