@@ -76,9 +76,9 @@ def convert_iwik(url: str) -> str:
     print("1"+ suffix)
     ip_version = ""
     if suffix == ".cidr":
-        ip_version == "ipv4"
+        ip_version = "ipv4"
     else:
-        ip_version == "ipv6"
+        ip_version = "ipv6"
     r = requests.get(url)
     ip_cidr_list = []
     if r.status_code == 200:
