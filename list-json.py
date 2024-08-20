@@ -1,7 +1,7 @@
 import requests
 import json
 import os
-import rawFiles
+import list-text
 
 adguard = [
     "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
