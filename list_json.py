@@ -1,14 +1,14 @@
 import requests
 import json
 import os
-import list-text
+import list_text
 
 adguard = [
     "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
 ]
 
-output_dir = rawFiles.output_dir
-files = rawFiles.files
+output_dir = list_text.output_dir
+files = list_text.files
 
 def convert_site(tmp: str) -> str:
     domain_suffix_list = []
