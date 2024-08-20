@@ -2,7 +2,7 @@ import requests
 import json
 import os
 from aggregate6 import aggregate
-import rawFiles
+from rawFiles import cnsite_filepath, ipv4_filepath, ipv6_filepath
 
 adguard = [
     "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
