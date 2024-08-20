@@ -8,7 +8,6 @@ adguard = [
     "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
 ]
 
-#output_dir = "./all"
 output_dir = rawFiles.output_dir
 files = rawFiles.files
 
