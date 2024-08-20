@@ -1,9 +1,9 @@
-import list-text
-import list-json
+import list_text
+import list_json
 
 def main():
-    list-text.main()
-    list-json.main()
+    list_text.main()
+    list_json.main()
 
 if __name__ == "__main__":
     main()
