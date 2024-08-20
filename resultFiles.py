@@ -194,7 +194,7 @@ def main():
     #files = rawFiles.files
     #os.mkdir(output_dir)
     
-    print("002:" + files)
+    print(files)
     filepath = convert_site(cnsite_filepath)
     files.append(filepath)
     
