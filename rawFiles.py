@@ -29,7 +29,7 @@ maxmind = [
 ]
 
 output_dir = "./all"
-
+cnsite_filepath = ipv4_filepath = ipv6_filepath = ""
 
 def convert_dnsmasq(url: str) -> str:
     r = requests.get(url)
@@ -191,8 +191,6 @@ def main():
     # files[7] = os.path.join(output_dir, apnic-cn-ipv6.txt)
     # files[8] = os.path.join(output_dir, maxmind-cn-ipv4.txt)
     # files[9] = os.path.join(output_dir, maxmind-cn-ipv6.txt)
-
-    global cnsite_filepath, ipv4_filepath, ipv6_filepath
     
     merge_site_lists = [files[0], files[1], files[2]]
     cnsite_filepath = merge_lists("cnsite", site_kv, *merge_site_lists)
@@ -211,8 +209,6 @@ def main():
     print("raw files generated:")
     for filepath in files:
         print(filepath)
-
-
 
 
 if __name__ == "__main__":
