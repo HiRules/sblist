@@ -9,6 +9,10 @@ adguard = [
 ]
 
 #output_dir = "./all"
+output_dir = rawFiles.output_dir
+cnsite_filepath = rawFiles.cnsite_filepath
+ipv4_filepath = rawFiles.ipv4_filepath
+ipv6_filepath = rawFiles.ipv6_filepath
 
 
 def convert_site(url: str) -> str:
@@ -28,7 +32,7 @@ def convert_site(url: str) -> str:
     }
     result["rules"][0]["domain_suffix"] = domain_suffix_list
     filename = url.split("/")[-1]
-    filepath = os.path.join(rawFiles.output_dir, filename.rsplit(".",1)[0] + ".json")
+    filepath = os.path.join(output_dir, filename.rsplit(".",1)[0] + ".json")
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
     return filepath
@@ -51,7 +55,7 @@ def convert_ip(url: str) -> str:
     }
     result["rules"][0]["ip_cidr"] = ip_cidr_list
     filename = url.split("/")[-1]
-    filepath = os.path.join(rawFiles.output_dir, filename.rsplit(".",1)[0] + ".json")
+    filepath = os.path.join(output_dir, filename.rsplit(".",1)[0] + ".json")
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
     return filepath
@@ -116,7 +120,7 @@ def convert_adguard(url: str) -> str:
     result["rules"][0]["domain_keyword"] = domain_keyword_list
     result["rules"][0]["domain_suffix"] = domain_suffix_list
     filename = url.split("/")[-1]
-    filepath = os.path.join(rawFiles.output_dir, filename.split(".")[-2] + ".json")
+    filepath = os.path.join(output_dir, filename.split(".")[-2] + ".json")
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
     return filepath
@@ -179,7 +183,7 @@ def convert_adguard_unblock(url: str) -> str:
     result["rules"][0]["domain"] = domain_list
     result["rules"][0]["domain_suffix"] = domain_suffix_list
     filename = url.split("/")[-1]
-    filepath = os.path.join(rawFiles.output_dir, filename.split(".")[-2] + ".unblock.json")
+    filepath = os.path.join(output_dir, filename.split(".")[-2] + ".unblock.json")
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
     return filepath
@@ -187,18 +191,18 @@ def convert_adguard_unblock(url: str) -> str:
 
 
 def main():
-    #files = []
+    files = []
     #os.mkdir(output_dir)
 
-    print(requests.get(rawFiles.cnsite_filepath).status_code)
+    print(requests.get(cnsite_filepath).status_code)
     
-    filepath = convert_site(rawFiles.cnsite_filepath)
+    filepath = convert_site(cnsite_filepath)
     files.append(filepath)
     
-    filepath = convert_ip(rawFiles.ipv4_filepath)
+    filepath = convert_ip(ipv4_filepath)
     files.append(filepath)
     
-    filepath = convert_ip(rawFiles.ipv6_filepath)
+    filepath = convert_ip(ipv6_filepath)
     files.append(filepath)
   
     for url in adguard:
