@@ -1,9 +1,9 @@
 import rawFiles
-import resultFiles
+#import resultFiles
 
 def main():
     rawFiles.main()
-    resultFiles.main()
+    #resultFiles.main()
 
 if __name__ == "__main__":
     main()
