@@ -213,9 +213,10 @@ def main():
     for filepath in files:
         print(filepath)
     
-    return files, cnsite_filepath, ipv4_filepath, ipv6_filepath
+    #return files, cnsite_filepath, ipv4_filepath, ipv6_filepath
+    return cnsite_filepath
     print("003:" + cnsite_filepath)
 
 
 if __name__ == "__main__":
-    return = main()
+    cnsite_filepath = main()
