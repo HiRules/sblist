@@ -30,6 +30,10 @@ maxmind = [
 
 output_dir = "./all"
 
+files = []
+
+cnsite_filepath = ipv4_filepath = ipv6_filepath = ""
+
 def convert_dnsmasq(url: str) -> str:
     r = requests.get(url)
     domain_suffix_list = []
@@ -153,12 +157,11 @@ def merge_lists(filename, kv, *lists):
 
 
 def main():
+    os.mkdir(output_dir)
     global files, cnsite_filepath, ipv4_filepath, ipv6_filepath
-    files = []
     site_kv = lambda x: (x.split('.')[0])
     ipv4_kv = lambda x: (x.split('.')[0], x.split('.')[1], x.split('.')[2])
     ipv6_kv = lambda x: (x.split(':')[0], x.split(':')[1])
-    os.mkdir(output_dir)
     for url in dnsmasq_china_list:
         filepath = convert_dnsmasq(url)
         files.append(filepath)
