@@ -11,7 +11,7 @@ adguard = [
 #output_dir = "./all"
 #output_dir = rawFiles.output_dir
 #files = rawFiles.files
-#cnsite_filepath = rawFiles.cnsite_filepath
+cnsite_filepath = rawFiles.cnsite_filepath
 #ipv4_filepath = rawFiles.ipv4_filepath
 #ipv6_filepath = rawFiles.ipv6_filepath
 
