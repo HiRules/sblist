@@ -15,7 +15,7 @@ def convert_site(tmp: str) -> str:
     domain_suffix_list = []
     with open(tmp,"r",encoding="utf-8") as lines:
         for line in lines:
-            domain_suffix_list.append(line)
+            domain_suffix_list.append(line.strip())
     result = {
         "version": 1,
         "rules": [
@@ -36,7 +36,7 @@ def convert_ip(tmp: str) -> str:
     ip_cidr_list = []
     with open(tmp,"r",encoding="utf-8") as lines:
         for line in lines:
-            ip_cidr_list.append(line)
+            ip_cidr_list.append(line.strip())
     result = {
         "version": 1,
         "rules": [
