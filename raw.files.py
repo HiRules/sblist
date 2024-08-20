@@ -28,7 +28,7 @@ maxmind = [
     "https://raw.githubusercontent.com/Dreamacro/maxmind-geoip/release/Country.mmdb"
 ]
 
-output_dir = "./rule-set"
+output_dir = "./raw"
 
 
 def convert_dnsmasq(url: str) -> str:
