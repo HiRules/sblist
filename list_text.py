@@ -82,7 +82,7 @@ def convert_iwik(url: str) -> str:
             if not line.startswith("#"):
                 ip_cidr_list.append(line)
     result = ip_cidr_list
-    filepath = os.path.join(output_dir, "iwik-" + ip_version + ".txt")
+    filepath = os.path.join(output_dir, "iwik_" + ip_version + ".txt")
     with open(filepath, "w") as f:
         f.write("\n".join(result))
     return filepath
@@ -103,8 +103,7 @@ def convert_apnic(url: str, country_code: str, ip_version: str) -> str:
                         ip_cidr_list.append(line.split(
                             "|")[3] + "/" + line.split("|")[4])
     result = aggregate(ip_cidr_list)
-    filepath = os.path.join(output_dir, "apnic-" +
-                            country_code.lower() + "-" + ip_version + ".txt")
+    filepath = os.path.join(output_dir, "apnic_" + ip_version + ".txt")
     with open(filepath, "w") as f:
         f.write("\n".join(result))
     return filepath
@@ -132,8 +131,7 @@ def convert_maxmind(url: str, country_code: str, ip_version: str) -> str:
                     ip_cidr_list.append(str(cidr))
     reader.close()
     result = aggregate(ip_cidr_list)
-    filepath = os.path.join(output_dir, "maxmind-" +
-                            country_code.lower() + "-" + ip_version + ".txt")
+    filepath = os.path.join(output_dir, "maxmind_" + ip_version + ".txt")
     with open(filepath, "w") as f:
         f.write("\n".join(result))
     return filepath
@@ -184,25 +182,25 @@ def main():
     # files[1] = os.path.join(output_dir, apple.china.txt)
     # files[2] = os.path.join(output_dir, google.china.txt)
     # files[3] = os.path.join(output_dir, chnroutes.txt)
-    # files[4] = os.path.join(output_dir, iwik-ipv4.txt)
-    # files[5] = os.path.join(output_dir, iwik-ipv6.txt)
-    # files[6] = os.path.join(output_dir, apnic-cn-ipv4.txt)
-    # files[7] = os.path.join(output_dir, apnic-cn-ipv6.txt)
-    # files[8] = os.path.join(output_dir, maxmind-cn-ipv4.txt)
-    # files[9] = os.path.join(output_dir, maxmind-cn-ipv6.txt)
+    # files[4] = os.path.join(output_dir, iwik_ipv4.txt)
+    # files[5] = os.path.join(output_dir, iwik_ipv6.txt)
+    # files[6] = os.path.join(output_dir, apnic_ipv4.txt)
+    # files[7] = os.path.join(output_dir, apnic_ipv6.txt)
+    # files[8] = os.path.join(output_dir, maxmind_ipv4.txt)
+    # files[9] = os.path.join(output_dir, maxmind_ipv6.txt)
     
-    cnsite_filepath = merge_lists("cnsite", site_kv, *[files[0], files[1], files[2]])
+    cnsite_filepath = merge_lists("cn_site", site_kv, *[files[0], files[1], files[2]])
     files.append(cnsite_filepath)
      
-    cnipv4_filepath = merge_lists("cnipv4", ipv4_kv, *[files[3], files[4], files[6], files[8]])
+    cnipv4_filepath = merge_lists("cn_ipv4", ipv4_kv, *[files[3], files[4], files[6], files[8]])
     files.append(ipv4_filepath)
     
-    cnipv6_filepath = merge_lists("cnipv6", ipv6_kv, *[files[5], files[7], files[9]])
+    cnipv6_filepath = merge_lists("cn_ipv6", ipv6_kv, *[files[5], files[7], files[9]])
     files.append(ipv6_filepath)
     
-    # files[10] = os.path.join(output_dir, cnsite.txt)
-    # files[11] = os.path.join(output_dir, cnipv4.txt)
-    # files[12] = os.path.join(output_dir, cnipv6.txt)
+    # files[10] = os.path.join(output_dir, cn_site.txt)
+    # files[11] = os.path.join(output_dir, cn_ipv4.txt)
+    # files[12] = os.path.join(output_dir, cn_ipv6.txt)
     
     print("txtList generated:")
     for filepath in files:
