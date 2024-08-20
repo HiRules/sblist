@@ -1,18 +1,19 @@
 import requests
 import json
 import os
-from aggregate6 import aggregate
 import rawFiles
+from aggregate6 import aggregate
 
 adguard = [
     "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
 ]
 
 #output_dir = "./all"
-#output_dir = rawFiles.output_dir
-#cnsite_filepath = rawFiles.cnsite_filepath
-#ipv4_filepath = rawFiles.ipv4_filepath
-#ipv6_filepath = rawFiles.ipv6_filepath
+output_dir = rawFiles.output_dir
+files = rawFiles.files
+cnsite_filepath = rawFiles.cnsite_filepath
+ipv4_filepath = rawFiles.ipv4_filepath
+ipv6_filepath = rawFiles.ipv6_filepath
 
 
 def convert_site(url: str) -> str:
@@ -191,7 +192,7 @@ def convert_adguard_unblock(url: str) -> str:
 
 
 def main():
-    files = []
+    #files = []
     #os.mkdir(output_dir)
     
     filepath = convert_site(cnsite_filepath)
