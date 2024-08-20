@@ -32,8 +32,6 @@ output_dir = "./all"
 
 files = []
 
-cnsite_filepath = ipv4_filepath = ipv6_filepath = ""
-
 def convert_dnsmasq(url: str) -> str:
     r = requests.get(url)
     domain_suffix_list = []
@@ -158,9 +156,9 @@ def merge_lists(filename, kv, *lists):
 
 def main():
     os.mkdir(output_dir)
-    global files, cnsite_filepath, ipv4_filepath, ipv6_filepath
+    global files
     site_kv = lambda x: (x.split('.')[0])
-    ipv4_kv = lambda x: (x.split('.')[0], x.split('.')[1], x.split('.')[2])
+    ipv4_kv = lambda x: (int(x.split('.')[0]), int(x.split('.')[1]), int(x.split('.')[2]))
     ipv6_kv = lambda x: (x.split(':')[0], x.split(':')[1])
     for url in dnsmasq_china_list:
         filepath = convert_dnsmasq(url)
@@ -193,23 +191,22 @@ def main():
     # files[8] = os.path.join(output_dir, maxmind-cn-ipv4.txt)
     # files[9] = os.path.join(output_dir, maxmind-cn-ipv6.txt)
     
-    merge_site_lists = [files[0], files[1], files[2]]
-    cnsite_filepath = merge_lists("cnsite", site_kv, *merge_site_lists)
+    cnsite_filepath = merge_lists("cnsite", site_kv, *[files[0], files[1], files[2]])
     files.append(cnsite_filepath)
-    
-    merge_ipv4_lists = [files[3], files[4], files[6], files[8]]
-    ipv4_filepath = merge_lists("cnipv4", ipv4_kv, *merge_ipv4_lists)
+     
+    cnipv4_filepath = merge_lists("cnipv4", ipv4_kv, *[files[3], files[4], files[6], files[8]])
     files.append(ipv4_filepath)
     
-    merge_ipv6_lists = [files[5], files[7], files[9]]
-    ipv6_filepath = merge_lists("cnipv6", ipv6_kv, *merge_ipv6_lists)
+    cnipv6_filepath = merge_lists("cnipv6", ipv6_kv, *[files[5], files[7], files[9]])
     files.append(ipv6_filepath)
     
-    print("raw files generated:")
+    # files[10] = os.path.join(output_dir, cnsite.txt)
+    # files[11] = os.path.join(output_dir, cnipv4.txt)
+    # files[12] = os.path.join(output_dir, cnipv6.txt)
+    
+    print("txtList generated:")
     for filepath in files:
         print(filepath)
-        
-    print(cnsite_filepath)
     
     return files
 
