@@ -11,11 +11,11 @@ adguard = [
 output_dir = rawFiles.output_dir
 files = rawFiles.files
 
-def convert_site(filecache: str) -> str:
+def convert_site(tmp: str) -> str:
     domain_suffix_list = []
-    lines = filecache.splitlines()
-    for line in lines:
-        domain_suffix_list.append(line)
+    with open(tmp,"r",encoding="utf-8") as lines:
+        for line in lines:
+            domain_suffix_list.append(line)
     result = {
         "version": 1,
         "rules": [
@@ -25,18 +25,18 @@ def convert_site(filecache: str) -> str:
         ]
     }
     result["rules"][0]["domain_suffix"] = domain_suffix_list
-    filename = filecache.split("/")[-1]
+    filename = tmp.split("/")[-1]
     filepath = os.path.join(output_dir, filename.rsplit(".",1)[0] + ".json")
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
     return filepath
 
 
-def convert_ip(io: str) -> str:
+def convert_ip(tmp: str) -> str:
     ip_cidr_list = []
-    lines = io.splitlines()
-    for line in lines:
-        ip_cidr_list.append(line)
+    with open(tmp,"r",encoding="utf-8") as lines:
+        for line in lines:
+            ip_cidr_list.append(line)
     result = {
         "version": 1,
         "rules": [
@@ -46,7 +46,7 @@ def convert_ip(io: str) -> str:
         ]
     }
     result["rules"][0]["ip_cidr"] = ip_cidr_list
-    filename = io.split("/")[-1]
+    filename = tmp.split("/")[-1]
     filepath = os.path.join(output_dir, filename.rsplit(".",1)[0] + ".json")
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
@@ -183,8 +183,6 @@ def convert_adguard_unblock(url: str) -> str:
 
 
 def main():
-    print(files[10])
-    print(type(files[10]))
     filepath = convert_site(files[10])
     files.append(filepath)
     
