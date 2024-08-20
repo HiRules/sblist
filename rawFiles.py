@@ -29,7 +29,7 @@ maxmind = [
 ]
 
 output_dir = "./all"
-cnsite_filepath = ipv4_filepath = ipv6_filepath = ""
+cnsite_filepath = ipv4_filepath = ipv6_filepath = "test"
 
 def convert_dnsmasq(url: str) -> str:
     r = requests.get(url)
@@ -138,7 +138,7 @@ def convert_maxmind(url: str, country_code: str, ip_version: str) -> str:
     return filepath
 
 
-def merge_lists(fn, kv, *lists):
+def merge_lists(filename, kv, *lists):
     result = set()
     for i in range(len(lists)):
         with open(lists[i],"r",encoding="utf-8") as R:
@@ -146,7 +146,7 @@ def merge_lists(fn, kv, *lists):
                 result.add(line.strip())
     result = list(result)
     result.sort(key = kv)
-    filepath = os.path.join(output_dir, fn + ".txt")
+    filepath = os.path.join(output_dir, filename + ".txt")
     with open(filepath,"w",encoding="utf-8") as W:
         for line in result:
             W.write(line + "\n")
@@ -155,7 +155,7 @@ def merge_lists(fn, kv, *lists):
 
 
 
-def main():
+#def main():
     files = []
     site_kv = lambda x: (x.split('.')[0])
     ipv4_kv = lambda x: (x.split('.')[0], x.split('.')[1], x.split('.')[2])
@@ -211,5 +211,5 @@ def main():
         print(filepath)
 
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()
