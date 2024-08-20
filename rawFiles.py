@@ -190,16 +190,17 @@ def main():
     # files[8] = os.path.join(output_dir, maxmind-cn-ipv4.txt)
     # files[9] = os.path.join(output_dir, maxmind-cn-ipv6.txt)
 
-    print(requests.get(fnb).status_code)
     merge_site_lists = [files[0], files[1], files[2]]
-    cnsite_filepath = merge_lists("cnsite", site_kv, *merge_site_lists)
-    print(site_filepath)
+    global cnsite_filepath = merge_lists("cnsite", site_kv, *merge_site_lists)
+    files.append(cnsite_filepath)
 
     merge_ipv4_lists = [files[3], files[4], files[6], files[8]]
-    ipv4_filepath = merge_lists("cnipv4", ipv4_kv, *merge_ipv4_lists)
+    global ipv4_filepath = merge_lists("cnipv4", ipv4_kv, *merge_ipv4_lists)
+    files.append(ipv4_filepath)
 
     merge_ipv6_lists = [files[5], files[7], files[9]]
-    ipv6_filepath = merge_lists("cnipv6", ipv6_kv, *merge_ipv6_lists)
+    global ipv6_filepath = merge_lists("cnipv6", ipv6_kv, *merge_ipv6_lists)
+    files.append(ipv6_filepath)
 
 
     print("raw files generated:")
