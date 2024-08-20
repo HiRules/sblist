@@ -185,36 +185,30 @@ def convert_adguard_unblock(url: str) -> str:
     return filepath
 
 
-def main():
-    files = []
-    os.mkdir(output_dir)
 
-    filepath = convert_site(cnsite_filepath)
+files = []
+os.mkdir(output_dir)
+
+filepath = convert_site(cnsite_filepath)
+files.append(filepath)
+
+filepath = convert_ip(ipv4_filepath)
+files.append(filepath)
+
+filepath = convert_ip(ipv6_filepath)
+files.append(filepath)
+
+for url in adguard:
+    filepath = convert_adguard(url)
     files.append(filepath)
-    
-    filepath = convert_ip(ipv4_filepath)
+    filepath = convert_adguard_unblock(url)
     files.append(filepath)
-    
-    filepath = convert_ip(ipv6_filepath)
-    files.append(filepath)
-  
-    for url in adguard:
-        filepath = convert_adguard(url)
-        files.append(filepath)
-        filepath = convert_adguard_unblock(url)
-        files.append(filepath)
 
 
-    print("rule-set source generated:")
-    for filepath in files:
-        print(filepath)
-    for filepath in files:
-        srs_path = filepath.replace(".json", ".srs")
-        os.system("sing-box rule-set compile --output " +
-                  srs_path + " " + filepath)
-
-
-
-
-if __name__ == "__main__":
-    main()
+print("rule-set source generated:")
+for filepath in files:
+    print(filepath)
+for filepath in files:
+    srs_path = filepath.replace(".json", ".srs")
+    os.system("sing-box rule-set compile --output " +
+              srs_path + " " + filepath)
