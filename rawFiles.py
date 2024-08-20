@@ -192,7 +192,7 @@ def main():
     # files[9] = os.path.join(output_dir, maxmind-cn-ipv6.txt)
     
     
-    
+    global cnsite_filepath, ipv4_filepath, ipv6_filepath
     merge_site_lists = [files[0], files[1], files[2]]
     cnsite_filepath = merge_lists("cnsite", site_kv, *merge_site_lists)
     print("raw: " + requests.get(cnsite_filepath).status_code)
