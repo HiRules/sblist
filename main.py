@@ -1,9 +1,9 @@
-import rawFiles
-import resultFiles
+import list-text
+import list-json
 
 def main():
-    rawFiles.main()
-    resultFiles.main()
+    list-text.main()
+    list-json.main()
 
 if __name__ == "__main__":
     main()
