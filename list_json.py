@@ -3,12 +3,40 @@ import json
 import os
 import list_text
 
+gfwlist = [
+    "https://raw.githubusercontent.com/ruijzhan/chnroute/master/gfwlist.txt"
+]
+
 adguard = [
     "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
 ]
 
 output_dir = list_text.output_dir
 files = list_text.files
+
+
+def convert_gfwlist(url: str) -> str:
+    r = requests.get(url)
+    domain_suffix_list = []
+    if r.status_code == 200:
+        lines = r.text.splitlines()
+        for line in lines:
+            domain_suffix_list.append(line.strip())
+    result = {
+        "version": 1,
+        "rules": [
+            {
+                "domain_suffix": []
+            }
+        ]
+    }
+    result["rules"][0]["domain_suffix"] = domain_suffix_list
+    filename = url.split("/")[-1]
+    filepath = os.path.join(output_dir, filename.rsplit(".",1)[0] + ".json")
+    with open(filepath, "w") as f:
+        f.write(json.dumps(result, indent=4))
+    return filepath
+    
 
 def convert_site(tmp: str) -> str:
     domain_suffix_list = []
@@ -190,6 +218,10 @@ def main():
     
     filepath = convert_ip(files[12])
     files.append(filepath)
+  
+    for url in gfwlist:
+        filepath = convert_gfwlist(url)
+        files.append(filepath)
   
     for url in adguard:
         filepath = convert_adguard(url)
