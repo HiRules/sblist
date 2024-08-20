@@ -209,8 +209,8 @@ def main():
     ipv6_filepath = merge_lists("cnipv6", ipv6_kv, *merge_ipv6_lists)
     files.append(ipv6_filepath)
 
-    #return cnsite_filepath, ipv4_filepath, ipv6_filepath
-    #print(type(cnsite_filepath))
+    return cnsite_filepath, ipv4_filepath, ipv6_filepath
+    print("003:" + cnsite_filepath)
     
     print("raw files generated:")
     for filepath in files:
