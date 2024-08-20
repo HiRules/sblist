@@ -193,8 +193,6 @@ def convert_adguard_unblock(url: str) -> str:
 def main():
     files = []
     #os.mkdir(output_dir)
-
-    print(requests.get(cnsite_filepath).status_code)
     
     filepath = convert_site(cnsite_filepath)
     files.append(filepath)
