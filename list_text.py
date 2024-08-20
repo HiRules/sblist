@@ -193,16 +193,16 @@ def main():
     files.append(cnsite_filepath)
      
     cnipv4_filepath = merge_lists("cn_ipv4", ipv4_kv, *[files[3], files[4], files[6], files[8]])
-    files.append(ipv4_filepath)
+    files.append(cnipv4_filepath)
     
     cnipv6_filepath = merge_lists("cn_ipv6", ipv6_kv, *[files[5], files[7], files[9]])
-    files.append(ipv6_filepath)
+    files.append(cnipv6_filepath)
     
     # files[10] = os.path.join(output_dir, cn_site.txt)
     # files[11] = os.path.join(output_dir, cn_ipv4.txt)
     # files[12] = os.path.join(output_dir, cn_ipv6.txt)
     
-    print("txtList generated:")
+    print("List generated:")
     for filepath in files:
         print(filepath)
     
