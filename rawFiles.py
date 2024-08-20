@@ -155,8 +155,10 @@ def merge_lists(filename, kv, *lists):
 
 
 global files, cnsite_filepath, ipv4_filepath, ipv6_filepath
+files = "001"
 def main():
     global files, cnsite_filepath, ipv4_filepath, ipv6_filepath
+    files = "002"
     files = []
     site_kv = lambda x: (x.split('.')[0])
     ipv4_kv = lambda x: (x.split('.')[0], x.split('.')[1], x.split('.')[2])
