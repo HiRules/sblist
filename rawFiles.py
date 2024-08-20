@@ -4,7 +4,6 @@ import maxminddb
 import requests
 import os
 from aggregate6 import aggregate
-import resultFiles
 
 dnsmasq_china_list = [
     "https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf",
