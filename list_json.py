@@ -202,7 +202,7 @@ def convert_adguard_unblock(url: str) -> str:
     result["rules"][0]["domain"] = domain_list
     result["rules"][0]["domain_suffix"] = domain_suffix_list
     filename = url.split("/")[-1]
-    filepath = os.path.join(output_dir, filename.split(".")[-2] + ".unblock.json")
+    filepath = os.path.join(output_dir, filename.split(".")[-2] + "_unblock.json")
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
     return filepath
