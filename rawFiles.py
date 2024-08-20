@@ -189,8 +189,6 @@ def main():
     # files[7] = os.path.join(output_dir, apnic-cn-ipv6.txt)
     # files[8] = os.path.join(output_dir, maxmind-cn-ipv4.txt)
     # files[9] = os.path.join(output_dir, maxmind-cn-ipv6.txt)
-    # files[10] = os.path.join(output_dir, filter.conf)
-    # files[11] = os.path.join(output_dir, filter.unblock.conf)
 
     print(requests.get(fnb).status_code)
     merge_site_lists = [files[0], files[1], files[2]]
@@ -204,7 +202,7 @@ def main():
     ipv6_filepath = merge_lists("cnipv6", ipv6_kv, *merge_ipv6_lists)
 
 
-    print("rule-set source generated:")
+    print("raw files generated:")
     for filepath in files:
         print(filepath)
 
