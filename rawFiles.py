@@ -154,8 +154,9 @@ def merge_lists(filename, kv, *lists):
 
 
 
+global files, cnsite_filepath, ipv4_filepath, ipv6_filepath
 def main():
-    global files
+    global files, cnsite_filepath, ipv4_filepath, ipv6_filepath
     files = []
     site_kv = lambda x: (x.split('.')[0])
     ipv4_kv = lambda x: (x.split('.')[0], x.split('.')[1], x.split('.')[2])
@@ -193,7 +194,7 @@ def main():
     # files[9] = os.path.join(output_dir, maxmind-cn-ipv6.txt)
     
     
-    global cnsite_filepath, ipv4_filepath, ipv6_filepath
+    
     
     merge_site_lists = [files[0], files[1], files[2]]
     cnsite_filepath = merge_lists("cnsite", site_kv, *merge_site_lists)
