@@ -152,13 +152,9 @@ def merge_lists(filename, kv, *lists):
     return filepath
 
 
-
-
-files = []
-cnsite_filepath = ipv4_filepath = ipv6_filepath = ""
 def main():
     global files, cnsite_filepath, ipv4_filepath, ipv6_filepath
-    #files = []
+    files = []
     site_kv = lambda x: (x.split('.')[0])
     ipv4_kv = lambda x: (x.split('.')[0], x.split('.')[1], x.split('.')[2])
     ipv6_kv = lambda x: (x.split(':')[0], x.split(':')[1])
@@ -194,9 +190,6 @@ def main():
     # files[8] = os.path.join(output_dir, maxmind-cn-ipv4.txt)
     # files[9] = os.path.join(output_dir, maxmind-cn-ipv6.txt)
     
-    
-    
-    
     merge_site_lists = [files[0], files[1], files[2]]
     cnsite_filepath = merge_lists("cnsite", site_kv, *merge_site_lists)
     files.append(cnsite_filepath)
@@ -212,11 +205,11 @@ def main():
     print("raw files generated:")
     for filepath in files:
         print(filepath)
+        
+    print(cnsite_filepath)
     
-    return files, cnsite_filepath, ipv4_filepath, ipv6_filepath
-    #return cnsite_filepath
-    print("003:" + cnsite_filepath)
+    return files
 
 
 if __name__ == "__main__":
-    files, cnsite_filepath, ipv4_filepath, ipv6_filepath = main()
+    files = main()
