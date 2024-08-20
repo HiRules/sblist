@@ -16,7 +16,7 @@ ipv4_filepath = rawFiles.ipv4_filepath
 ipv6_filepath = rawFiles.ipv6_filepath
 
 
-def convert_site(io: str) -> str:
+def convert_site(io):
     print("001:"+io)
     print(type(io))
     domain_suffix_list = []
