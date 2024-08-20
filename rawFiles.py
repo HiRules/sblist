@@ -196,17 +196,16 @@ global cnsite_filepath, ipv4_filepath, ipv6_filepath
 merge_site_lists = [files[0], files[1], files[2]]
 cnsite_filepath = merge_lists("cnsite", site_kv, *merge_site_lists)
 files.append(cnsite_filepath)
-print(files[10])
 
 merge_ipv4_lists = [files[3], files[4], files[6], files[8]]
 ipv4_filepath = merge_lists("cnipv4", ipv4_kv, *merge_ipv4_lists)
 files.append(ipv4_filepath)
-print(files[11])
 
 merge_ipv6_lists = [files[5], files[7], files[9]]
 ipv6_filepath = merge_lists("cnipv6", ipv6_kv, *merge_ipv6_lists)
 files.append(ipv6_filepath)
-print(files[12])
+
+print(requests.get(cnsite_filepath).status_code)
 
 
 print("raw files generated:")
