@@ -28,7 +28,7 @@ maxmind = [
     "https://raw.githubusercontent.com/Dreamacro/maxmind-geoip/release/Country.mmdb"
 ]
 
-output_dir = "./all"
+output_dir = "./release"
 
 files = []
 
