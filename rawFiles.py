@@ -179,6 +179,11 @@ for url in maxmind:
     filepath = convert_maxmind(url, "CN", "ipv6")
     files.append(filepath)
 
+
+print("raw files generated:")
+for filepath in files:
+    print(filepath)
+
 # files[0] = os.path.join(output_dir, accelerated-domains.china.txt)
 # files[1] = os.path.join(output_dir, apple.china.txt)
 # files[2] = os.path.join(output_dir, google.china.txt)
@@ -206,8 +211,3 @@ merge_ipv6_lists = [files[5], files[7], files[9]]
 ipv6_filepath = merge_lists("cnipv6", ipv6_kv, *merge_ipv6_lists)
 files.append(ipv6_filepath)
 print(files[12])
-
-
-print("raw files generated:")
-for filepath in files:
-    print(filepath)
