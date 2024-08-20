@@ -155,7 +155,7 @@ def merge_lists(filename, kv, *lists):
 
 
 files = []
-#cnsite_filepath = ipv4_filepath = ipv6_filepath = ""
+cnsite_filepath = ipv4_filepath = ipv6_filepath = ""
 def main():
     global files, cnsite_filepath, ipv4_filepath, ipv6_filepath
     #files = []
@@ -210,7 +210,7 @@ def main():
     files.append(ipv6_filepath)
 
     #return cnsite_filepath, ipv4_filepath, ipv6_filepath
-    print(type(cnsite_filepath))
+    #print(type(cnsite_filepath))
     
     print("raw files generated:")
     for filepath in files:
