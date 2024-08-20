@@ -193,9 +193,9 @@ def main():
     
     
     global cnsite_filepath, ipv4_filepath, ipv6_filepath
+    
     merge_site_lists = [files[0], files[1], files[2]]
     cnsite_filepath = merge_lists("cnsite", site_kv, *merge_site_lists)
-    print("raw: " + requests.get(cnsite_filepath).status_code)
     files.append(cnsite_filepath)
     
     merge_ipv4_lists = [files[3], files[4], files[6], files[8]]
