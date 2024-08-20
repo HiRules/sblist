@@ -11,16 +11,10 @@ adguard = [
 #output_dir = "./all"
 output_dir = rawFiles.output_dir
 files = rawFiles.files
-cnsite_filepath = rawFiles.cnsite_filepath
-ipv4_filepath = rawFiles.ipv4_filepath
-ipv6_filepath = rawFiles.ipv6_filepath
 
-
-def convert_site(io: str) -> str:
-    print(io)
-    print(type(io))
+def convert_site(filecache: str) -> str:
     domain_suffix_list = []
-    lines = io.splitlines()
+    lines = filecache.splitlines()
     for line in lines:
         domain_suffix_list.append(line)
     result = {
@@ -32,7 +26,7 @@ def convert_site(io: str) -> str:
         ]
     }
     result["rules"][0]["domain_suffix"] = domain_suffix_list
-    filename = io.split("/")[-1]
+    filename = filecache.split("/")[-1]
     filepath = os.path.join(output_dir, filename.rsplit(".",1)[0] + ".json")
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
@@ -190,11 +184,8 @@ def convert_adguard_unblock(url: str) -> str:
 
 
 def main():
-    #files = []
-    #files = rawFiles.files
-    #os.mkdir(output_dir)
-    
-    print(files)
+    print(files[10])
+    print(type(files[10]))
     filepath = convert_site(files[10])
     files.append(filepath)
     
