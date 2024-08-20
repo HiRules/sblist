@@ -209,7 +209,7 @@ merge_ipv6_lists = [files[5], files[7], files[9]]
 ipv6_filepath = merge_lists("cnipv6", ipv6_kv, *merge_ipv6_lists)
 files.append(ipv6_filepath)
 
-return files, cnsite_filepath, ipv4_filepath, ipv6_filepath
+#return files, cnsite_filepath, ipv4_filepath, ipv6_filepath
 print("003:" + cnsite_filepath)
 
 print("raw files generated:")
