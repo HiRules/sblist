@@ -16,13 +16,11 @@ ipv4_filepath = rawFiles.ipv4_filepath
 ipv6_filepath = rawFiles.ipv6_filepath
 
 
-def convert_site(url: str) -> str:
-    r = requests.get(url)
+def convert_site(io: str) -> str:
     domain_suffix_list = []
-    if r.status_code == 200:
-        lines = r.text.splitlines()
-        for line in lines:
-            domain_suffix_list.append(line)
+    lines = io.splitlines()
+    for line in lines:
+        domain_suffix_list.append(line)
     result = {
         "version": 1,
         "rules": [
@@ -39,13 +37,11 @@ def convert_site(url: str) -> str:
     return filepath
 
 
-def convert_ip(url: str) -> str:
-    r = requests.get(url)
+def convert_ip(io: str) -> str:
     ip_cidr_list = []
-    if r.status_code == 200:
-        lines = r.text.splitlines()
-        for line in lines:
-            ip_cidr_list.append(line)
+    lines = io.splitlines()
+    for line in lines:
+        ip_cidr_list.append(line)
     result = {
         "version": 1,
         "rules": [
