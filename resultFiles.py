@@ -30,7 +30,7 @@ def convert_site(io: str) -> str:
         ]
     }
     result["rules"][0]["domain_suffix"] = domain_suffix_list
-    filename = url.split("/")[-1]
+    filename = io.split("/")[-1]
     filepath = os.path.join(output_dir, filename.rsplit(".",1)[0] + ".json")
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
@@ -51,7 +51,7 @@ def convert_ip(io: str) -> str:
         ]
     }
     result["rules"][0]["ip_cidr"] = ip_cidr_list
-    filename = url.split("/")[-1]
+    filename = io.split("/")[-1]
     filepath = os.path.join(output_dir, filename.rsplit(".",1)[0] + ".json")
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
