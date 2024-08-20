@@ -17,7 +17,7 @@ ipv6_filepath = rawFiles.ipv6_filepath
 
 
 def convert_site(io: str) -> str:
-    print("001:"+io)
+    print(io)
     print(type(io))
     domain_suffix_list = []
     lines = io.splitlines()
@@ -195,13 +195,13 @@ def main():
     #os.mkdir(output_dir)
     
     print(files)
-    filepath = convert_site(cnsite_filepath)
+    filepath = convert_site(files[10])
     files.append(filepath)
     
-    filepath = convert_ip(ipv4_filepath)
+    filepath = convert_ip(files[11])
     files.append(filepath)
     
-    filepath = convert_ip(ipv6_filepath)
+    filepath = convert_ip(files[12])
     files.append(filepath)
   
     for url in adguard:
