@@ -2,7 +2,7 @@ import requests
 import json
 import os
 from aggregate6 import aggregate
-from rawFiles import cnsite_filepath, ipv4_filepath, ipv6_filepath
+import rawFiles
 
 adguard = [
     "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
@@ -186,29 +186,36 @@ def convert_adguard_unblock(url: str) -> str:
 
 
 
-files = []
-os.mkdir(output_dir)
+def main():
+    files = []
+    os.mkdir(output_dir)
 
-filepath = convert_site(cnsite_filepath)
-files.append(filepath)
-
-filepath = convert_ip(ipv4_filepath)
-files.append(filepath)
-
-filepath = convert_ip(ipv6_filepath)
-files.append(filepath)
-
-for url in adguard:
-    filepath = convert_adguard(url)
+    filepath = convert_site(rawFiles.cnsite_filepath)
     files.append(filepath)
-    filepath = convert_adguard_unblock(url)
+    
+    filepath = convert_ip(rawFiles.ipv4_filepath)
     files.append(filepath)
+    
+    filepath = convert_ip(rawFiles.ipv6_filepath)
+    files.append(filepath)
+  
+    for url in adguard:
+        filepath = convert_adguard(url)
+        files.append(filepath)
+        filepath = convert_adguard_unblock(url)
+        files.append(filepath)
 
 
-print("rule-set source generated:")
-for filepath in files:
-    print(filepath)
-for filepath in files:
-    srs_path = filepath.replace(".json", ".srs")
-    os.system("sing-box rule-set compile --output " +
-              srs_path + " " + filepath)
+    print("rule-set source generated:")
+    for filepath in files:
+        print(filepath)
+    for filepath in files:
+        srs_path = filepath.replace(".json", ".srs")
+        os.system("sing-box rule-set compile --output " +
+                  srs_path + " " + filepath)
+
+
+
+
+if __name__ == "__main__":
+    main()
