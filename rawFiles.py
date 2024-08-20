@@ -158,6 +158,7 @@ def main():
     site_kv = lambda x: (x.split('.')[0])
     ipv4_kv = lambda x: (x.split('.')[0], x.split('.')[1], x.split('.')[2])
     ipv6_kv = lambda x: (x.split(':')[0], x.split(':')[1])
+    global cnsite_filepath, ipv4_filepath, ipv6_filepath
     os.mkdir(output_dir)
     for url in dnsmasq_china_list:
         filepath = convert_dnsmasq(url)
@@ -191,15 +192,15 @@ def main():
     # files[9] = os.path.join(output_dir, maxmind-cn-ipv6.txt)
 
     merge_site_lists = [files[0], files[1], files[2]]
-    global cnsite_filepath = merge_lists("cnsite", site_kv, *merge_site_lists)
+    cnsite_filepath = merge_lists("cnsite", site_kv, *merge_site_lists)
     files.append(cnsite_filepath)
 
     merge_ipv4_lists = [files[3], files[4], files[6], files[8]]
-    global ipv4_filepath = merge_lists("cnipv4", ipv4_kv, *merge_ipv4_lists)
+    ipv4_filepath = merge_lists("cnipv4", ipv4_kv, *merge_ipv4_lists)
     files.append(ipv4_filepath)
 
     merge_ipv6_lists = [files[5], files[7], files[9]]
-    global ipv6_filepath = merge_lists("cnipv6", ipv6_kv, *merge_ipv6_lists)
+    ipv6_filepath = merge_lists("cnipv6", ipv6_kv, *merge_ipv6_lists)
     files.append(ipv6_filepath)
 
 
