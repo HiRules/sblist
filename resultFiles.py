@@ -17,6 +17,8 @@ ipv6_filepath = rawFiles.ipv6_filepath
 
 
 def convert_site(io: str) -> str:
+    print("001:"+io)
+    print(type(io))
     domain_suffix_list = []
     lines = io.splitlines()
     for line in lines:
@@ -34,6 +36,7 @@ def convert_site(io: str) -> str:
     filepath = os.path.join(output_dir, filename.rsplit(".",1)[0] + ".json")
     with open(filepath, "w") as f:
         f.write(json.dumps(result, indent=4))
+    print("002:"+filepath)
     return filepath
 
 
@@ -193,6 +196,7 @@ def main():
     
     filepath = convert_site(cnsite_filepath)
     files.append(filepath)
+    print("003:"+filepath)
     
     filepath = convert_ip(ipv4_filepath)
     files.append(filepath)
