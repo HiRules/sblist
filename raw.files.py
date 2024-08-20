@@ -2,7 +2,6 @@ import math
 import re
 import maxminddb
 import requests
-import json
 import os
 from aggregate6 import aggregate
 
