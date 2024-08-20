@@ -190,6 +190,7 @@ def main():
     files = []
     os.mkdir(output_dir)
 
+    print(requests.get(rawFiles.cnsite_filepath).status_code)
     filepath = convert_site(rawFiles.cnsite_filepath)
     files.append(filepath)
     
