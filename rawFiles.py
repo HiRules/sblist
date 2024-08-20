@@ -155,7 +155,6 @@ def merge_lists(filename, kv, *lists):
 
 
 global files, cnsite_filepath, ipv4_filepath, ipv6_filepath
-files = "001"
 def main():
     global files, cnsite_filepath, ipv4_filepath, ipv6_filepath
     files = "002"
