@@ -31,7 +31,7 @@ jobs:
         run: |
             set -Eeuo pipefail
             source venv/bin/activate
-            python3 format.files.py
+            python3 resultFiles.py
       - name: "Commit and push"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
