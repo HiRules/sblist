@@ -3,6 +3,7 @@ import re
 import maxminddb
 import requests
 import os
+import ipaddress
 from aggregate6 import aggregate
 
 dnsmasq_china_list = [
@@ -137,18 +138,38 @@ def convert_maxmind(url: str, country_code: str, ip_version: str) -> str:
     return filepath
 
 
-def merge_lists(filename, kv, *lists):
+def merge_domains(filename, *lists):
     result = set()
     for i in range(len(lists)):
         with open(lists[i],"r",encoding="utf-8") as R:
             for line in R:
-                result.add(line.strip())
-    result = list(result)
-    result.sort(key = kv)
+                e = line.strip()
+                if e:
+                    result.add(e)
+    result = sorted(result)
     filepath = os.path.join(output_dir, filename + ".txt")
     with open(filepath,"w",encoding="utf-8") as W:
         for line in result:
             W.write(line + "\n")
+    return filepath
+    
+
+def merge_cidr(filename, *lists):
+    result = set()
+    for i in range(len(lists)):
+        with open(lists[i],"r",encoding="utf-8") as R:
+            for line in R:
+                e = line.strip()
+                if e:
+                    result.add(e)
+    result = [ipaddress.ip_network(cidr) for cidr in result]
+    result = ipaddress.collapse_addresses(result)
+    result = sorted(result)
+    filepath = os.path.join(filename + ".txt")
+    with open(filepath,"w",encoding="utf-8") as W:
+        for line in result:
+            print(line)
+            W.write(str(line) + "\n")
     return filepath
 
 
@@ -189,14 +210,14 @@ def main():
     # files[8] = os.path.join(output_dir, maxmind_ipv4.txt)
     # files[9] = os.path.join(output_dir, maxmind_ipv6.txt)
     
-    cnsite_filepath = merge_lists("cn_site", site_kv, *[files[0], files[1], files[2]])
-    files.append(cnsite_filepath)
+    cn_site = merge_domains("cn_site", site_kv, *[files[0], files[1], files[2]])
+    files.append(cn_site)
      
-    cnipv4_filepath = merge_lists("cn_ipv4", ipv4_kv, *[files[3], files[4], files[6], files[8]])
-    files.append(cnipv4_filepath)
+    cn_ipv4 = merge_cidr("cn_ipv4", *[files[3], files[4], files[6], files[8]])
+    files.append(cn_ipv4)
     
-    cnipv6_filepath = merge_lists("cn_ipv6", ipv6_kv, *[files[5], files[7], files[9]])
-    files.append(cnipv6_filepath)
+    cn_ipv6 = merge_cidr("cn_ipv6", *[files[5], files[7], files[9]])
+    files.append(cn_ipv6)
     
     # files[10] = os.path.join(output_dir, cn_site.txt)
     # files[11] = os.path.join(output_dir, cn_ipv4.txt)
