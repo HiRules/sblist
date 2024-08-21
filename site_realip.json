@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "rules": [
+        {
+            "domain_suffix": [
+                "weixinbridge.com",
+                "mikrotik.com",
+                "mynetname.net",
+                "windows.net",
+                "windows.com",
+                "microsoft.com",
+                "microsoftonline.com",
+                "eu.org",
+                "1drv.com"
+            ]
+        }
+    ]
+}
