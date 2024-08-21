@@ -18,4 +18,4 @@ sing-box.app
 icloudnative.io
 linux.do
 sagernet.org
-com.tw"
+com.tw
