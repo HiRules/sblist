@@ -36,6 +36,7 @@ files = []
 def convert_dnsmasq(url: str) -> str:
     r = requests.get(url)
     domain_suffix_list = []
+    prefix = str()
     if r.status_code == 200:
         lines = r.text.splitlines()
         for line in lines:
@@ -45,7 +46,11 @@ def convert_dnsmasq(url: str) -> str:
                     domain_suffix_list.append(domain.group(1))
     result = domain_suffix_list
     filename = url.split("/")[-1]
-    filepath = os.path.join(output_dir, filename.rsplit(".",1)[0] + ".txt")
+    if "-" in filename:
+        prefix = filename.split("-")[0]
+    else
+        prefix = filename.split(".")[0]
+    filepath = os.path.join(output_dir, "cn_" + prefix + ".txt")
     with open(filepath, "w") as f:
         f.write("\n".join(result))
     return filepath
@@ -175,9 +180,6 @@ def merge_cidr(filename, *lists):
 def main():
     os.mkdir(output_dir)
     global files
-    site_kv = lambda x: (x.split('.')[0])
-    ipv4_kv = lambda x: (int(x.split('.')[0]), int(x.split('.')[1]), int(x.split('.')[2]))
-    ipv6_kv = lambda x: (x.split(':')[0], x.split(':')[1])
     for url in dnsmasq_china_list:
         filepath = convert_dnsmasq(url)
         files.append(filepath)
