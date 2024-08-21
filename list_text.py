@@ -165,10 +165,9 @@ def merge_cidr(filename, *lists):
     result = [ipaddress.ip_network(cidr) for cidr in result]
     result = ipaddress.collapse_addresses(result)
     result = sorted(result)
-    filepath = os.path.join(filename + ".txt")
+    filepath = os.path.join(output_dir, filename + ".txt")
     with open(filepath,"w",encoding="utf-8") as W:
         for line in result:
-            print(line)
             W.write(str(line) + "\n")
     return filepath
 
@@ -210,7 +209,7 @@ def main():
     # files[8] = os.path.join(output_dir, maxmind_ipv4.txt)
     # files[9] = os.path.join(output_dir, maxmind_ipv6.txt)
     
-    cn_site = merge_domains("cn_site", site_kv, *[files[0], files[1], files[2]])
+    cn_site = merge_domains("cn_site", *[files[0], files[1], files[2]])
     files.append(cn_site)
      
     cn_ipv4 = merge_cidr("cn_ipv4", *[files[3], files[4], files[6], files[8]])
