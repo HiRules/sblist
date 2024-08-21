@@ -48,7 +48,7 @@ def convert_dnsmasq(url: str) -> str:
     filename = url.split("/")[-1]
     if "-" in filename:
         prefix = filename.split("-")[0]
-    else
+    else:
         prefix = filename.split(".")[0]
     filepath = os.path.join(output_dir, "cn_" + prefix + ".txt")
     with open(filepath, "w") as f:
