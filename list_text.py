@@ -224,10 +224,6 @@ def main():
     # files[11] = os.path.join(output_dir, cn_ipv4.txt)
     # files[12] = os.path.join(output_dir, cn_ipv6.txt)
     
-    print("List generated:")
-    for filepath in files:
-        print(filepath)
-    
     return files
 
 
