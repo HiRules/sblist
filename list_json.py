@@ -210,13 +210,16 @@ def convert_adguard_unblock(url: str) -> str:
 
 
 def main():
-    filepath = convert_site(files[10])
+    filepath = convert_ip(files[4])
     files.append(filepath)
     
-    filepath = convert_ip(files[11])
+    filepath = convert_site(files[11])
     files.append(filepath)
     
-    filepath = convert_ip(files[12])
+    #filepath = convert_ip(files[12])
+    #files.append(filepath)
+    
+    filepath = convert_ip(files[13])
     files.append(filepath)
   
     for url in gfwlist:
