@@ -3,6 +3,8 @@
 https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf \
 https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf \
 https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf
+### GeoIP2-CN：
+https://raw.githubusercontent.com/Hackl0us/GeoIP2-CN/release/CN-ip-cidr.txt
 ### chnroutes2：
 https://raw.githubusercontent.com/misakaio/chnroutes2/master/chnroutes.txt
 ### apnic：
@@ -70,6 +72,7 @@ https://raw.githubusercontent.com/ruijzhan/chnroute/master/gfwlist.txt
 [@misakaio/chnroutes2](https://github.com/misakaio/chnroutes2) \
 [@Dreamacro/maxmind-geoip](https://github.com/Dreamacro/maxmind-geoip) \
 [@AdguardTeam/AdguardFilters](https://github.com/AdguardTeam/AdguardFilters)
+[@Hackl0us/GeoIP2-CN](https://github.com/Hackl0us/GeoIP2-CN)
 
 
 
