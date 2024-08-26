@@ -1,25 +1,23 @@
 # Source List：
-### Direct-Domain-List(Domains --> cn_site)：
+### Direct-Domain-List：
 https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf \
 https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf \
 https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf
-### chnroutes2(IPv4 only --> cn_ipv4)：
+### chnroutes2：
 https://raw.githubusercontent.com/misakaio/chnroutes2/master/chnroutes.txt
-### apnic([IPv4 & IPv6] --> [cn_ipv4 & cn_ipv6])：
+### apnic：
 https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest
-### maxmind([IPv4 & IPv6] --> [cn_ipv4 & cn_ipv6])：
+### maxmind：
 https://raw.githubusercontent.com/Dreamacro/maxmind-geoip/release/Country.mmdb
-### adguard(Ads Filtering --> [filter and filter_unblock])：
+### adguard：
 https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
-### iwik([IPv4 & IPv6] --> [cn_ipv4 & cn_ipv6])：
+### iwik：
 https://www.iwik.org/ipcountry/CN.cidr \
 https://www.iwik.org/ipcountry/CN.ipv6
-### Gfwlist(Domains --> gfwlist)：
+### Gfwlist：
 https://raw.githubusercontent.com/ruijzhan/chnroute/master/gfwlist.txt
-# Set Relation：
-cn_site = accelerated-domains.china + apple.china + google.china \
-cn_ipv4 = chnroutes2 + apnic[cn_ipv4] + maxmind[cn_ipv4] + iwik[cn_ipv4] \
-cn_ipv6 = apnic[cn_ipv6] + maxmind[cn_ipv6] + iwik[cn_ipv6]
+
+
 # srs files：
 ```json
       {
