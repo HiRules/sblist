@@ -219,8 +219,8 @@ def main():
     #filepath = convert_ip(files[12])
     #files.append(filepath)
     
-    filepath = convert_ip(files[13])
-    files.append(filepath)
+    #filepath = convert_ip(files[13])
+    #files.append(filepath)
   
     for url in gfwlist:
         filepath = convert_gfwlist(url)
