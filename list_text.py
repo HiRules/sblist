@@ -218,13 +218,13 @@ def main():
     # files[9] = os.path.join(output_dir, maxmind_ipv4.txt)
     # files[10] = os.path.join(output_dir, maxmind_ipv6.txt)
     
-    cn_site = merge_domains("CNSITE_ALL", *[files[0], files[1], files[2]])
+    CNSITE_ALL = merge_domains("CNSITE_ALL", *[files[0], files[1], files[2]])
     files.append(CNSITE_ALL)
      
-    #cn_ipv4 = merge_cidr("CNIPV4_ALL", *[files[3], files[4], files[5], files[7], files[9]])
+    #CNIPV4_ALL = merge_cidr("CNIPV4_ALL", *[files[3], files[4], files[5], files[7], files[9]])
     #files.append(CNIPV4_ALL)
     
-    #cn_ipv6 = merge_cidr("CNIPV6_ALL", *[files[6], files[8], files[10]])
+    #CNIPV6_ALL = merge_cidr("CNIPV6_ALL", *[files[6], files[8], files[10]])
     #files.append(CNIPV6_ALL)
     
     # files[11] = os.path.join(output_dir, CNSITE_ALL.txt)
