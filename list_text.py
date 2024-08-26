@@ -13,7 +13,8 @@ dnsmasq_china_list = [
 ]
 
 chnroutes2 = [
-    "https://raw.githubusercontent.com/misakaio/chnroutes2/master/chnroutes.txt"
+    "https://raw.githubusercontent.com/misakaio/chnroutes2/master/chnroutes.txt",
+    "https://raw.githubusercontent.com/Hackl0us/GeoIP2-CN/release/CN-ip-cidr.txt"
 ]
 
 iwik = [
@@ -59,6 +60,7 @@ def convert_dnsmasq(url: str) -> str:
 def convert_chnroutes2(url: str) -> str:
     r = requests.get(url)
     ip_cidr_list = []
+    prefix = str()
     if r.status_code == 200:
         lines = r.text.splitlines()
         for line in lines:
@@ -66,7 +68,11 @@ def convert_chnroutes2(url: str) -> str:
                 ip_cidr_list.append(line)
     result = ip_cidr_list
     filename = url.split("/")[-1]
-    filepath = os.path.join(output_dir, filename.split(".")[-2] + ".txt")
+    if "-" in filename:
+        prefix = "GeoIP2CN"
+    else:
+        prefix = filename.split(".")[-2]
+    filepath = os.path.join(output_dir, prefix + ".txt")
     with open(filepath, "w") as f:
         f.write("\n".join(result))
     return filepath
@@ -204,25 +210,26 @@ def main():
     # files[1] = os.path.join(output_dir, apple.china.txt)
     # files[2] = os.path.join(output_dir, google.china.txt)
     # files[3] = os.path.join(output_dir, chnroutes.txt)
-    # files[4] = os.path.join(output_dir, iwik_ipv4.txt)
-    # files[5] = os.path.join(output_dir, iwik_ipv6.txt)
-    # files[6] = os.path.join(output_dir, apnic_ipv4.txt)
-    # files[7] = os.path.join(output_dir, apnic_ipv6.txt)
-    # files[8] = os.path.join(output_dir, maxmind_ipv4.txt)
-    # files[9] = os.path.join(output_dir, maxmind_ipv6.txt)
+    # files[4] = os.path.join(output_dir, GeoIP2CN.txt)
+    # files[5] = os.path.join(output_dir, iwik_ipv4.txt)
+    # files[6] = os.path.join(output_dir, iwik_ipv6.txt)
+    # files[7] = os.path.join(output_dir, apnic_ipv4.txt)
+    # files[8] = os.path.join(output_dir, apnic_ipv6.txt)
+    # files[9] = os.path.join(output_dir, maxmind_ipv4.txt)
+    # files[10] = os.path.join(output_dir, maxmind_ipv6.txt)
     
-    cn_site = merge_domains("cn_site", *[files[0], files[1], files[2]])
-    files.append(cn_site)
+    cn_site = merge_domains("CNSITE_ALL", *[files[0], files[1], files[2]])
+    files.append(CNSITE_ALL)
      
-    cn_ipv4 = merge_cidr("cn_ipv4", *[files[3], files[4], files[6], files[8]])
-    files.append(cn_ipv4)
+    #cn_ipv4 = merge_cidr("CNIPV4_ALL", *[files[3], files[4], files[5], files[7], files[9]])
+    #files.append(CNIPV4_ALL)
     
-    cn_ipv6 = merge_cidr("cn_ipv6", *[files[5], files[7], files[9]])
-    files.append(cn_ipv6)
+    #cn_ipv6 = merge_cidr("CNIPV6_ALL", *[files[6], files[8], files[10]])
+    #files.append(CNIPV6_ALL)
     
-    # files[10] = os.path.join(output_dir, cn_site.txt)
-    # files[11] = os.path.join(output_dir, cn_ipv4.txt)
-    # files[12] = os.path.join(output_dir, cn_ipv6.txt)
+    # files[11] = os.path.join(output_dir, CNSITE_ALL.txt)
+    # files[12] = os.path.join(output_dir, CNIPV4_ALL.txt)
+    # files[13] = os.path.join(output_dir, CNIPV6_ALL.txt)
     
     return files
 
