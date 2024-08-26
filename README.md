@@ -71,7 +71,7 @@ https://raw.githubusercontent.com/ruijzhan/chnroute/master/gfwlist.txt
 [@felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list) \
 [@misakaio/chnroutes2](https://github.com/misakaio/chnroutes2) \
 [@Dreamacro/maxmind-geoip](https://github.com/Dreamacro/maxmind-geoip) \
-[@AdguardTeam/AdguardFilters](https://github.com/AdguardTeam/AdguardFilters)
+[@AdguardTeam/AdguardFilters](https://github.com/AdguardTeam/AdguardFilters) \
 [@Hackl0us/GeoIP2-CN](https://github.com/Hackl0us/GeoIP2-CN)
 
 
