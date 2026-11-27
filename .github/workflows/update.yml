@@ -26,6 +26,8 @@ jobs:
             set -Eeuo pipefail
             python3 -m venv venv
             source venv/bin/activate
+            export CFLAGS="-Wno-error=incompatible-pointer-types"
+            pip3 install --upgrade pip
             pip3 install -r requirements.txt
       - name: "Update rule-set"
         run: |
